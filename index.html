@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Vila do Churros - Pré-venda de Mini Churros</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Fredoka & Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        churros: {
+                            bg: '#FDF6E2',
+                            card: '#FFF9ED',
+                            primary: '#8B4513',
+                            accent: '#D97706',
+                            dark: '#5C2C16',
+                            cream: '#FEF3C7',
+                            border: '#E6D5B8'
+                        }
+                    },
+                    fontFamily: {
+                        fredoka: ['Fredoka', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDF6E2;
+            color: #5C2C16;
+            background-image: radial-gradient(#E6D5B8 1.2px, transparent 1.2px);
+            background-size: 24px 24px;
+        }
+        .title-font {
+            font-family: 'Fredoka', sans-serif;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-amber-200">
+
+    <!-- Top Announcement Bar -->
+    <div class="bg-[#8B4513] text-[#FDF6E2] text-center py-2.5 px-4 text-xs md:text-sm font-fredoka tracking-wide flex items-center justify-center gap-2 shadow-inner">
+        <i class="fa-solid fa-bullhorn text-amber-400 animate-bounce"></i>
+        <span>Retirada dia <strong>12 de Novembro</strong>, das 19h às 21h, no CATRE-MG Contagem!</span>
+    </div>
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-40 bg-[#FFF9ED]/95 backdrop-blur-md border-b border-[#E6D5B8] shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <img src="logo.jpeg" alt="Logo A Vila do Churros" class="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover border-2 border-[#8B4513] shadow-md" onerror="this.src='https://placehold.co/100x100/8B4513/FFF9ED?text=Vila'">
+                <div>
+                    <h1 class="title-font text-lg md:text-2xl font-bold text-[#8B4513] leading-tight">A Vila do Churros</h1>
+                    <p class="text-xs text-amber-700 font-medium">Turma 8º Ano A • Colégio Adventista da Pampulha</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-3">
+                <a href="#cardapio" class="hidden sm:inline-block text-sm font-semibold text-[#8B4513] hover:text-[#D97706] transition">Cardápio</a>
+                <a href="#info" class="hidden sm:inline-block text-sm font-semibold text-[#8B4513] hover:text-[#D97706] transition">Retirada & Pix</a>
+                <button onclick="toggleCartDrawer()" class="relative bg-[#8B4513] hover:bg-[#70340F] text-white px-4 py-2.5 rounded-full font-fredoka text-sm shadow-md transition flex items-center gap-2">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span>Carrinho</span>
+                    <span id="cart-badge" class="absolute -top-1.5 -right-1.5 bg-red-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold border-2 border-white hidden">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden py-12 md:py-20 px-4">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div class="text-center md:text-left space-y-4">
+                <span class="inline-block bg-amber-100 text-[#8B4513] text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full border border-amber-300">
+                    Pré-Venda Oficial
+                </span>
+                <h2 class="title-font text-4xl md:text-6xl font-bold text-[#8B4513] leading-tight">
+                    Mini Churros <span class="text-[#D97706]">Crocantes</span> por fora, macios por dentro!
+                </h2>
+                <p class="text-base md:text-lg text-stone-700 font-normal max-w-lg mx-auto md:mx-0">
+                    Feitos na hora com todo o carinho. Garanta já o seu pote para a nossa feira de empreendedorismo!
+                </p>
+                <div class="pt-2 flex flex-wrap gap-3 justify-center md:justify-start">
+                    <a href="#cardapio" class="bg-[#D97706] hover:bg-[#b86204] text-white font-fredoka px-6 py-3.5 rounded-2xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-0.5 flex items-center gap-2">
+                        <i class="fa-solid fa-utensils"></i> Ver Cardápio e Pedir
+                    </a>
+                    <a href="#info" class="bg-white hover:bg-amber-50 text-[#8B4513] border-2 border-[#8B4513] font-fredoka px-6 py-3.5 rounded-2xl transition flex items-center gap-2">
+                        <i class="fa-solid fa-map-location-dot"></i> Local e Pix
+                    </a>
+                </div>
+            </div>
+
+            <!-- Hero Image Showcase -->
+            <div class="relative flex justify-center">
+                <div class="relative w-full max-w-md bg-white p-4 rounded-3xl shadow-xl border-4 border-[#8B4513]/10 transform rotate-1 hover:rotate-0 transition duration-300 flex justify-center items-center">
+                    <img src="churros.png" alt="Churros A Vila do Churros" class="h-80">
+                    <div class="absolute -bottom-4 -right-4 bg-[#8B4513] text-amber-100 px-4 py-2 rounded-2xl shadow-lg border-2 border-white font-fredoka text-sm flex items-center gap-2">
+                        <i class="fa-solid fa-fire text-amber-400"></i> Fritos na hora!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Cardápio Section -->
+    <main id="cardapio" class="max-w-6xl mx-auto px-4 py-12 flex-grow w-full">
+        <div class="text-center max-w-xl mx-auto mb-12">
+            <h3 class="title-font text-3xl md:text-4xl font-bold text-[#8B4513]">Nosso Cardápio</h3>
+            <p class="text-stone-600 mt-2">Escolha o seu pote favorito de mini churros e adicione seus complementos!</p>
+        </div>
+
+        <!-- Porções Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+            <!-- Pote 5 Churros -->
+            <div class="bg-white rounded-3xl p-6 shadow-md border-2 border-[#E6D5B8] hover:border-[#8B4513] transition flex flex-col justify-between relative overflow-hidden group">
+                <div class="absolute top-0 right-0 bg-amber-100 text-[#8B4513] text-xs font-bold px-4 py-1.5 rounded-bl-2xl font-fredoka">
+                    Opção Clássica
+                </div>
+                <div>
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-20 h-20 bg-amber-50 rounded-2xl flex items-center justify-center text-3xl text-[#D97706] shadow-inner border border-amber-200">
+                            <i class="fa-solid fa-mug-hot"></i>
+                        </div>
+                        <div>
+                            <h4 class="title-font text-2xl font-bold text-[#8B4513]">Pote com 5 Mini Churros</h4>
+                            <p class="text-stone-500 text-sm">Crocantes por fora, macios por dentro.</p>
+                        </div>
+                    </div>
+                    <div class="text-3xl font-bold text-[#D97706] font-fredoka my-4">
+                        R$ 6,50
+                    </div>
+                </div>
+                <button onclick="addToCart('Pote com 5 Mini Churros', 6.50, 'pote')" class="w-full bg-[#8B4513] hover:bg-[#70340F] text-white py-3 rounded-2xl font-fredoka font-semibold shadow transition flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-plus"></i> Adicionar ao Carrinho
+                </button>
+            </div>
+
+            <!-- Pote 10 Churros (Mais pedido) -->
+            <div class="bg-white rounded-3xl p-6 shadow-md border-2 border-[#D97706] hover:shadow-xl transition flex flex-col justify-between relative overflow-hidden group">
+                <div class="absolute top-0 right-0 bg-[#D97706] text-white text-xs font-bold px-4 py-1.5 rounded-bl-2xl font-fredoka animate-pulse">
+                     O Mais Pedido!
+                </div>
+                <div>
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-20 h-20 bg-amber-100 rounded-2xl flex items-center justify-center text-3xl text-[#D97706] shadow-inner border border-amber-300">
+                            <i class="fa-solid fa-bucket"></i>
+                        </div>
+                        <div>
+                            <h4 class="title-font text-2xl font-bold text-[#8B4513]">Pote com 10 Mini Churros</h4>
+                            <p class="text-stone-500 text-sm">A melhor proporção para compartilhar!</p>
+                        </div>
+                    </div>
+                    <div class="text-3xl font-bold text-[#D97706] font-fredoka my-4">
+                        R$ 12,00
+                    </div>
+                </div>
+                <button onclick="addToCart('Pote com 10 Mini Churros (Mais Pedido)', 12.00, 'pote')" class="w-full bg-[#D97706] hover:bg-[#b86204] text-white py-3 rounded-2xl font-fredoka font-semibold shadow transition flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-plus"></i> Adicionar ao Carrinho
+                </button>
+            </div>
+        </div>
+
+        <!-- Acréscimos Section -->
+        <div class="bg-white/80 backdrop-blur rounded-3xl p-6 md:p-8 border-2 border-[#E6D5B8] shadow-sm mb-16">
+            <div class="text-center max-w-md mx-auto mb-8">
+                <span class="text-xs uppercase tracking-widest font-bold text-amber-700 bg-amber-100 px-3 py-1 rounded-full">Dê um toque especial</span>
+                <h3 class="title-font text-2xl md:text-3xl font-bold text-[#8B4513] mt-2">Acréscimos Opcionais</h3>
+                <p class="text-stone-600 text-sm mt-1">Apenas <strong class="text-[#D97706]">R$ 1,00</strong> cada por adicional!</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Chocolate -->
+                <div class="bg-[#FFF9ED] border border-[#E6D5B8] rounded-2xl p-5 flex flex-col justify-between items-center text-center shadow-sm">
+                    <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center text-2xl text-[#8B4513] mb-3">
+                        <i class="fa-solid fa-droplet"></i>
+                    </div>
+                    <div>
+                        <h5 class="title-font font-bold text-lg text-[#8B4513]">Chocolate Derretido</h5>
+                        <p class="text-xs text-stone-500 mt-1">Cremoso e quentinho.</p>
+                        <p class="font-fredoka text-amber-700 font-bold mt-2">+ R$ 1,00</p>
+                    </div>
+                    <button onclick="addToCart('Acréscimo: Chocolate Derretido', 1.00, 'acrescimo')" class="mt-4 w-full bg-[#8B4513] hover:bg-[#70340F] text-white text-sm py-2 rounded-xl font-fredoka transition">
+                        Adicionar
+                    </button>
+                </div>
+
+                <!-- Paçoca -->
+                <div class="bg-[#FFF9ED] border border-[#E6D5B8] rounded-2xl p-5 flex flex-col justify-between items-center text-center shadow-sm">
+                    <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center text-2xl text-[#8B4513] mb-3">
+                        <i class="fa-solid fa-cookie"></i>
+                    </div>
+                    <div>
+                        <h5 class="title-font font-bold text-lg text-[#8B4513]">Paçoca Triturada</h5>
+                        <p class="text-xs text-stone-500 mt-1">Sabor amendoim irresistível.</p>
+                        <p class="font-fredoka text-amber-700 font-bold mt-2">+ R$ 1,00</p>
+                    </div>
+                    <button onclick="addToCart('Acréscimo: Paçoca Triturada', 1.00, 'acrescimo')" class="mt-4 w-full bg-[#8B4513] hover:bg-[#70340F] text-white text-sm py-2 rounded-xl font-fredoka transition">
+                        Adicionar
+                    </button>
+                </div>
+
+                <!-- Granulado -->
+                <div class="bg-[#FFF9ED] border border-[#E6D5B8] rounded-2xl p-5 flex flex-col justify-between items-center text-center shadow-sm">
+                    <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center text-2xl text-[#8B4513] mb-3">
+                        <img src="granulados.png" class="rounded-full">
+                    </div>
+                    <div>
+                        <h5 class="title-font font-bold text-lg text-[#8B4513]">Granulado</h5>
+                        <p class="text-xs text-stone-500 mt-1">Clássico e crocante.</p>
+                        <p class="font-fredoka text-amber-700 font-bold mt-2">+ R$ 1,00</p>
+                    </div>
+                    <button onclick="addToCart('Acréscimo: Granulado', 1.00, 'acrescimo')" class="mt-4 w-full bg-[#8B4513] hover:bg-[#70340F] text-white text-sm py-2 rounded-xl font-fredoka transition">
+                        Adicionar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Informações de Retirada & Pix -->
+        <div id="info" class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            <!-- Local e Data -->
+            <div class="bg-white rounded-3xl p-6 md:p-8 border-2 border-[#E6D5B8] shadow-sm flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-amber-100 text-[#D97706] rounded-2xl flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-calendar-days"></i>
+                        </div>
+                        <h4 class="title-font text-2xl font-bold text-[#8B4513]">Retirada do Pedido</h4>
+                    </div>
+                    <ul class="space-y-4 text-stone-700">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-calendar-check text-[#D97706] mt-1 text-lg"></i>
+                            <div>
+                                <strong class="text-[#8B4513]">Data:</strong> 12 de novembro
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-clock text-[#D97706] mt-1 text-lg"></i>
+                            <div>
+                                <strong class="text-[#8B4513]">Horário:</strong> Das 19h às 21h
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-location-dot text-[#D97706] mt-1 text-lg"></i>
+                            <div>
+                                <strong class="text-[#8B4513]">Local:</strong> CATRE-MG Contagem
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-school text-[#D97706] mt-1 text-lg"></i>
+                            <div>
+                                <strong class="text-[#8B4513]">Realização:</strong> Feira de Empreendedorismo do Colégio Adventista da Pampulha (Turma 8º Ano A)
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="mt-6 pt-4 border-t border-stone-100 text-xs text-stone-500 flex items-center gap-2">
+                    <i class="fa-solid fa-circle-info text-amber-600"></i> Apresente o comprovante de pagamento Pix no dia da retirada.
+                </div>
+            </div>
+
+            <!-- Dados Pix -->
+            <div class="bg-white rounded-3xl p-6 md:p-8 border-2 border-[#E6D5B8] shadow-sm flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-emerald-100 text-emerald-700 rounded-2xl flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-qrcode"></i>
+                        </div>
+                        <h4 class="title-font text-2xl font-bold text-[#8B4513]">Chave Pix Oficial</h4>
+                    </div>
+                    <p class="text-stone-600 text-sm mb-4">Efetue o pagamento correspondente ao valor do seu pedido na chave abaixo:</p>
+                    
+                    <div class="bg-stone-50 p-4 rounded-2xl border border-stone-200 space-y-2">
+                        <div class="flex justify-between text-xs text-stone-500 font-medium">
+                            <span>Tipo: Celular</span>
+                            <span>Nome: Carolina Paula da Fonseca Silva</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span id="pix-key" class="font-mono font-bold text-[#8B4513] text-lg">(31) 99420-8140</span>
+                <!-- btn copia pix -->
+                            <button onclick="copyPix()" class="bg-[#8B4513] hover:bg-[#70340F] text-white px-3 py-1.5 rounded-xl text-xs font-fredoka transition flex items-center gap-1.5">
+                                <i class="fa-regular fa-copy"></i> Copiar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div id="copy-feedback" class="text-xs text-emerald-600 font-medium mt-4 hidden flex items-center gap-1">
+                    <i class="fa-solid fa-check"></i> Chave Pix copiada com sucesso!
+                </div>
+                <!-- Fim btn copia pix -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#8B4513] text-amber-100 py-8 px-4 mt-auto">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
+            <div>
+                <h5 class="title-font font-bold text-xl text-white">A Vila do Churros</h5>
+                <p class="text-xs text-amber-200/80 mt-1">Feira de Empreendedorismo • Colégio Adventista da Pampulha</p>
+            </div>
+            <div class="text-xs text-amber-200/80">
+                <p>Retirada: CATRE-MG Contagem, 12 de novembro, das 19h às 21h.</p>
+                <p class="mt-1">© 2026 Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Drawer / Modal -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden transition-opacity opacity-0 pointer-events-none flex justify-end">
+        <div id="cart-panel" class="w-full max-w-md bg-[#FFF9ED] h-full shadow-2xl flex flex-col transform translate-x-full transition-transform duration-300">
+            <!-- Cart Header -->
+            <div class="p-4 bg-[#8B4513] text-white flex items-center justify-between">
+                <div class="flex items-center gap-2 font-fredoka text-lg">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span>Seu Carrinho de Pré-Venda</span>
+                </div>
+                <button onclick="toggleCartDrawer()" class="text-amber-200 hover:text-white p-2 text-lg">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Cart Body / Items List -->
+            <div id="cart-items" class="p-4 flex-grow overflow-y-auto space-y-3">
+                <div class="text-center text-stone-400 py-12">
+                    <i class="fa-solid fa-basket-shopping text-4xl mb-3"></i>
+                    <p class="font-fredoka text-stone-500">Seu carrinho está vazio.</p>
+                </div>
+            </div>
+
+            <!-- Cart Checkout Form & Footer -->
+            <div class="p-4 bg-white border-t border-[#E6D5B8] space-y-4">
+                <div id="checkout-form-container" class="space-y-3">
+                    <div>
+                        <label class="block text-xs font-bold text-[#8B4513] mb-1">Seu Nome Completo:</label>
+                        <input type="text" id="client-name" placeholder="Ex: Maria Silva" class="w-full px-3 py-2 text-sm rounded-xl border border-stone-300 focus:outline-none focus:border-[#8B4513]">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-[#8B4513] mb-1">Telefone / WhatsApp:</label>
+                        <input type="text" id="client-phone" placeholder="Ex: (31) 98888-7777" class="w-full px-3 py-2 text-sm rounded-xl border border-stone-300 focus:outline-none focus:border-[#8B4513]">
+                    </div>
+                </div>
+
+                <div class="flex justify-between items-center text-lg font-bold text-[#8B4513] pt-2 border-t border-stone-100">
+                    <span>Total:</span>
+                    <span id="cart-total" class="font-fredoka text-xl text-[#D97706]">R$ 0,00</span>
+                </div>
+
+                <button onclick="finalizeOrder()" class="w-full bg-[#D97706] hover:bg-[#b86204] text-white py-3 rounded-2xl font-fredoka font-bold shadow-md transition flex items-center justify-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-lg"></i> Enviar Pedido via WhatsApp
+                </button>
+                <p class="text-[10px] text-center text-stone-500">Ao enviar, você abrirá o WhatsApp com o resumo para concluir com o Pix.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 bg-[#8B4513] text-amber-100 px-5 py-3 rounded-2xl shadow-xl font-fredoka text-sm transform translate-y-20 opacity-0 transition-all duration-300 flex items-center gap-2 border border-amber-300/30">
+        <i class="fa-solid fa-circle-check text-amber-400"></i>
+        <span id="toast-message">Item adicionado ao carrinho!</span>
+    </div>
+
+    <!-- JavaScript Logic -->
+
+
+    <script>
+    // Inicializa o carrinho tentando carregar do localStorage ou começa vazio
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Carrega o Nome e Telefone salvos assim que a página abre
+    window.addEventListener('DOMContentLoaded', () => {
+        const savedName = localStorage.getItem('client-name');
+        const savedPhone = localStorage.getItem('client-phone');
+
+        if (savedName) document.getElementById('client-name').value = savedName;
+        if (savedPhone) document.getElementById('client-phone').value = savedPhone;
+
+        // Renderiza o carrinho com os itens recuperados (se houver)
+        updateCartUI();
+    });
+
+    function addToCart(name, price, type) {
+        const existing = cart.find(item => item.name === name);
+        if (existing) {
+            existing.quantity += 1;
+        } else {
+            cart.push({ name, price, quantity: 1, type });
+        }
+        updateCartUI();
+        showToast(`${name} adicionado!`);
+    }
+
+    function removeFromCart(index) {
+        cart.splice(index, 1);
+        updateCartUI();
+    }
+
+    function updateQuantity(index, delta) {
+        cart[index].quantity += delta;
+        if (cart[index].quantity <= 0) {
+            cart.splice(index, 1);
+        }
+        updateCartUI();
+    }
+
+    function updateCartUI() {
+        // Salva o estado atual do carrinho no localStorage toda vez que ele muda
+        localStorage.setItem('cart', JSON.stringify(cart));
+
+        const badge = document.getElementById('cart-badge');
+        const itemsContainer = document.getElementById('cart-items');
+        const totalElement = document.getElementById('cart-total');
+
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+        if (totalItems > 0) {
+            badge.innerText = totalItems;
+            badge.classList.remove('hidden');
+        } else {
+            badge.classList.add('hidden');
+        }
+
+        if (cart.length === 0) {
+            itemsContainer.innerHTML = `
+                <div class="text-center text-stone-400 py-12">
+                    <i class="fa-solid fa-basket-shopping text-4xl mb-3"></i>
+                    <p class="font-fredoka text-stone-500">Seu carrinho está vazio.</p>
+                </div>
+            `;
+        } else {
+            itemsContainer.innerHTML = cart.map((item, index) => `
+                <div class="bg-white p-3 rounded-2xl border border-stone-200 flex items-center justify-between gap-3 shadow-sm">
+                    <div class="flex-grow">
+                        <h6 class="font-fredoka text-sm font-semibold text-[#8B4513]">${item.name}</h6>
+                        <p class="text-xs text-stone-500">R$ ${item.price.toFixed(2).replace('.', ',')} un.</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button onclick="updateQuantity(${index}, -1)" class="w-7 h-7 bg-stone-100 rounded-lg text-stone-600 hover:bg-stone-200 flex items-center justify-center font-bold text-xs">-</button>
+                        <span class="text-sm font-bold font-fredoka w-5 text-center">${item.quantity}</span>
+                        <button onclick="updateQuantity(${index}, 1)" class="w-7 h-7 bg-amber-100 rounded-lg text-[#8B4513] hover:bg-amber-200 flex items-center justify-center font-bold text-xs">+</button>
+                    </div>
+                    <button onclick="removeFromCart(${index})" class="text-red-400 hover:text-red-600 p-1 text-sm"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            `).join('');
+        }
+
+        totalElement.innerText = `R$ ${totalPrice.toFixed(2).replace('.', ',')}`;
+    }
+
+    function toggleCartDrawer() {
+        const drawer = document.getElementById('cart-drawer');
+        const panel = document.getElementById('cart-panel');
+        if (drawer.classList.contains('hidden')) {
+            drawer.classList.remove('hidden', 'pointer-events-none');
+            setTimeout(() => {
+                drawer.classList.remove('opacity-0');
+                panel.classList.remove('translate-x-full');
+            }, 10);
+        } else {
+            drawer.classList.add('opacity-0');
+            panel.classList.add('translate-x-full');
+            setTimeout(() => {
+                drawer.classList.add('hidden', 'pointer-events-none');
+            }, 300);
+        }
+    }
+
+    function showToast(message) {
+        const toast = document.getElementById('toast');
+        const msg = document.getElementById('toast-message');
+        msg.innerText = message;
+        toast.classList.remove('translate-y-20', 'opacity-0');
+        setTimeout(() => {
+            toast.classList.add('translate-y-20', 'opacity-0');
+        }, 3000);
+    }
+
+    function copyPix() {
+        const pixText = "(31) 99420-8140";
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(pixText);
+        } else {
+            // Alternativa para navegadores antigos/HTTP caso dê erro
+            const textarea = document.createElement('textarea');
+            textarea.value = pixText;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+        }
+        const feedback = document.getElementById('copy-feedback');
+        feedback.classList.remove('hidden');
+        setTimeout(() => feedback.classList.add('hidden'), 3500);
+    }
+
+    function finalizeOrder() {
+        const name = document.getElementById('client-name').value.trim();
+        const phone = document.getElementById('client-phone').value.trim();
+
+        if (!name || !phone) {
+            showToast("Por favor, preencha seu Nome e Telefone!");
+            return;
+        }
+
+        // Salva os dados do cliente de forma persistente no navegador
+        localStorage.setItem('client-name', name);
+        localStorage.setItem('client-phone', phone);
+
+        if (cart.length === 0) {
+            showToast("Seu carrinho está vazio!");
+            return;
+        }
+
+        const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        
+        let message = `*Olá! Gostaria de fazer um pedido na Pré-Venda - A Vila do Churros*\n\n`;
+        message += `*Nome:* ${name}\n`;
+        message += `*Telefone:* ${phone}\n\n`;
+        message += `*Itens do Pedido:*\n`;
+        
+        cart.forEach(item => {
+            message += `- ${item.quantity}x ${item.name} (R$ ${(item.price * item.quantity).toFixed(2).replace('.', ',')})\n`;
+        });
+
+        message += `\n*Total a Pagar via Pix:* R$ ${totalPrice.toFixed(2).replace('.', ',')}\n`;
+        message += `*Chave Pix:* (31) 99420-8140 (Carolina Paula)\n`;
+        message += `*Retirada:* 12 de novembro, das 19h às 21h, no CATRE-MG Contagem.`;
+
+        const encodedMessage = encodeURIComponent(message);
+        const whatsappUrl = `https://wa.me/5531994208140?text=${encodedMessage}`;
+        window.open(whatsappUrl, '_blank');
+    }
+</script>
+
+
+
+    <!-- <script>
+        let cart = [];
+
+        function addToCart(name, price, type) {
+            const existing = cart.find(item => item.name === name);
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                cart.push({ name, price, quantity: 1, type });
+            }
+            updateCartUI();
+            showToast(`${name} adicionado!`);
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function updateQuantity(index, delta) {
+            cart[index].quantity += delta;
+            if (cart[index].quantity <= 0) {
+                cart.splice(index, 1);
+            }
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const badge = document.getElementById('cart-badge');
+            const itemsContainer = document.getElementById('cart-items');
+            const totalElement = document.getElementById('cart-total');
+
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+            if (totalItems > 0) {
+                badge.innerText = totalItems;
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+
+            if (cart.length === 0) {
+                itemsContainer.innerHTML = `
+                    <div class="text-center text-stone-400 py-12">
+                        <i class="fa-solid fa-basket-shopping text-4xl mb-3"></i>
+                        <p class="font-fredoka text-stone-500">Seu carrinho está vazio.</p>
+                    </div>
+                `;
+            } else {
+                itemsContainer.innerHTML = cart.map((item, index) => `
+                    <div class="bg-white p-3 rounded-2xl border border-stone-200 flex items-center justify-between gap-3 shadow-sm">
+                        <div class="flex-grow">
+                            <h6 class="font-fredoka text-sm font-semibold text-[#8B4513]">${item.name}</h6>
+                            <p class="text-xs text-stone-500">R$ ${item.price.toFixed(2).replace('.', ',')} un.</p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button onclick="updateQuantity(${index}, -1)" class="w-7 h-7 bg-stone-100 rounded-lg text-stone-600 hover:bg-stone-200 flex items-center justify-center font-bold text-xs">-</button>
+                            <span class="text-sm font-bold font-fredoka w-5 text-center">${item.quantity}</span>
+                            <button onclick="updateQuantity(${index}, 1)" class="w-7 h-7 bg-amber-100 rounded-lg text-[#8B4513] hover:bg-amber-200 flex items-center justify-center font-bold text-xs">+</button>
+                        </div>
+                        <button onclick="removeFromCart(${index})" class="text-red-400 hover:text-red-600 p-1 text-sm"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                `).join('');
+            }
+
+            totalElement.innerText = `R$ ${totalPrice.toFixed(2).replace('.', ',')}`;
+        }
+
+        function toggleCartDrawer() {
+            const drawer = document.getElementById('cart-drawer');
+            const panel = document.getElementById('cart-panel');
+            if (drawer.classList.contains('hidden')) {
+                drawer.classList.remove('hidden', 'pointer-events-none');
+                setTimeout(() => {
+                    drawer.classList.remove('opacity-0');
+                    panel.classList.remove('translate-x-full');
+                }, 10);
+            } else {
+                drawer.classList.add('opacity-0');
+                panel.classList.add('translate-x-full');
+                setTimeout(() => {
+                    drawer.classList.add('hidden', 'pointer-events-none');
+                }, 300);
+            }
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const msg = document.getElementById('toast-message');
+            msg.innerText = message;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        function copyPix() {
+            const pixText = "(31) 99420-8140";
+            document.execCommand('copy');
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(pixText);
+            }
+            const feedback = document.getElementById('copy-feedback');
+            feedback.classList.remove('hidden');
+            setTimeout(() => feedback.classList.add('hidden'), 3500);
+        }
+
+        function finalizeOrder() {
+            const name = document.getElementById('client-name').value.trim();
+            const phone = document.getElementById('client-phone').value.trim();
+
+            if (!name || !phone) {
+                showToast("Por favor, preencha seu Nome e Telefone!");
+                return;
+            }
+
+            localStorage.setItem('client-name', name);
+            localStorage.setItem('client-phone', phone);
+
+            if (cart.length === 0) {
+                showToast("Seu carrinho está vazio!");
+                return;
+            }
+
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            let message = `*Olá! Gostaria de fazer um pedido na Pré-Venda - A Vila do Churros*\n\n`;
+            message += `*Nome:* ${name}\n`;
+            message += `*Telefone:* ${phone}\n\n`;
+            message += `*Itens do Pedido:*\n`;
+            
+            cart.forEach(item => {
+                message += `- ${item.quantity}x ${item.name} (R$ ${(item.price * item.quantity).toFixed(2).replace('.', ',')})\n`;
+            });
+
+            message += `\n*Total a Pagar via Pix:* R$ ${totalPrice.toFixed(2).replace('.', ',')}\n`;
+            message += `*Chave Pix:* (31) 99420-8140 (Carolina Paula)\n`;
+            message += `*Retirada:* 12 de novembro, das 19h às 21h, no CATRE-MG Contagem.`;
+
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/5531994208140?text=${encodedMessage}`;
+            window.open(whatsappUrl, '_blank');
+
+                window.addEventListener('DOMContentLoaded', () => {
+                const savedName = localStorage.getItem('client-name');
+                const savedPhone = localStorage.getItem('client-phone');
+
+                if (savedName) {
+                    document.getElementById('client-name').value = savedName;
+                }
+                if (savedPhone) {
+                    document.getElementById('client-phone').value = savedPhone;
+                }
+            });
+        }
+    </script> -->
+</body>
+</html>
